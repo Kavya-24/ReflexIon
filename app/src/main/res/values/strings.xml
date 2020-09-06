@@ -28,4 +28,5 @@
     <string name="date_today">Date today</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
+    <string name="continue_signing_in">Continue signing in</string>
 </resources>
