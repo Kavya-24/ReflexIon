@@ -1,11 +1,14 @@
 package com.example.reflexion.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.reflexion.MainActivity
 import com.example.reflexion.R
 import com.google.firebase.auth.FirebaseAuth
 
+@Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
 
 
@@ -22,8 +25,12 @@ class SplashActivity : AppCompatActivity() {
 
             if (FirebaseAuth.getInstance().currentUser == null) {
                 //When we are not signed in
+                val i = Intent(this, LoginActivity::class.java)
+                startActivity(i);
 
             } else {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i);
 
             }
 
@@ -32,8 +39,8 @@ class SplashActivity : AppCompatActivity() {
         }, 1000)
 
 
-        }
+    }
 
 
 }
-}
+
