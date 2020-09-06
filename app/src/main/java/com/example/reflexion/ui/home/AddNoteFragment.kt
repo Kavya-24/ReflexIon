@@ -1,4 +1,4 @@
-package com.example.reflexion.ui
+package com.example.reflexion.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.reflexion.R
 import com.example.reflexion.databinding.AddNoteFragmentBinding
+import com.example.reflexion.viewmodels.AddNoteViewModel
 
 class AddNoteFragment : Fragment() {
 

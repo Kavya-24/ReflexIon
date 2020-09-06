@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.reflexion.R
+import com.example.reflexion.viewmodels.GalleryViewModel
 
 class GalleryFragment : Fragment() {
 

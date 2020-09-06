@@ -1,4 +1,4 @@
-package com.example.reflexion.ui
+package com.example.reflexion.viewmodels
 
 import androidx.lifecycle.ViewModel
 

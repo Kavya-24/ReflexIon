@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.reflexion.R
 import com.example.reflexion.databinding.FragmentHomeBinding
+import com.example.reflexion.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
 

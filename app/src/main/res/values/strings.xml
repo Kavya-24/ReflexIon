@@ -25,4 +25,7 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="my_reflective_log">My Reflective Log</string>
+    <string name="date_today">Date today</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
 </resources>

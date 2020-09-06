@@ -1,4 +1,4 @@
-package com.example.reflexion.ui.home
+package com.example.reflexion.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
