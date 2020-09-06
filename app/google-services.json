@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "248474822435",
+    "firebase_url": "https://reflexion-967a2.firebaseio.com",
+    "project_id": "reflexion-967a2",
+    "storage_bucket": "reflexion-967a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248474822435:android:c4b6e99a7e09198ad78e96",
+        "android_client_info": {
+          "package_name": "com.example.reflexion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248474822435-1hm75045fe3hjtrnpf8rtg829k5553dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiFbvEJSGXsLHKTlKmDbiUdWbkVGQYZjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248474822435-1hm75045fe3hjtrnpf8rtg829k5553dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
