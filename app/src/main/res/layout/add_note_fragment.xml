@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AddNoteFragment">
+
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space"
+            android:padding="@dimen/space"
+            android:text="@string/what_i_did_today"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_8x"
+            android:layout_margin="@dimen/space_2x"
+            android:autofillHints="What I did today"
+            android:hint="@string/add_work_here"
+            android:inputType="text"
+            android:maxLines="10"
+            app:layout_constraintTop_toBottomOf="@id/tv1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbtn_save"
+            style="@style/buttonAttributesStyle"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbtn_reset"
+            style="@style/buttonAttributesStyle"
+            android:text="@string/reset"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mbtn_save" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

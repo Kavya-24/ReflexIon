@@ -17,4 +17,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="buttonAttributesStyle">
+        <item name="android:layout_width">@dimen/btn_width</item>
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="android:enabled">false</item>
+        <item name="android:layout_margin">@dimen/space_2x</item>
+    </style>
+
 </resources>
