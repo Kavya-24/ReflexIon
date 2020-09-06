@@ -16,6 +16,9 @@ object FirestoreUtil {
             )}"
         )
 
+    //Collection for all the notes in here
+    //private  val myTasksCollectionReference = firestoreInstance.collection("myTasks")
+
 
     fun initCurrentUserIfFirstTime(onComplete: () -> Unit) {
         //We want to get the current user document refernece
@@ -32,6 +35,13 @@ object FirestoreUtil {
             } else {
                 onComplete()
             }
+        }
+    }
+
+    fun getCurrentUser(onComplete: (User) -> Unit) {
+
+        currentUserDocRef.get().addOnSuccessListener {
+            it.toObject(User::class.java)?.let { it1 -> onComplete(it1) }
         }
     }
 

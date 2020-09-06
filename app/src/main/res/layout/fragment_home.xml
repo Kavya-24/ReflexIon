@@ -9,15 +9,25 @@
         tools:context=".ui.home.HomeFragment">
 
 
+        <TextView
+            android:id="@+id/tv_no_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_tasks_added_as_of_now"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <!-- RecyclerView with some common attributes -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notes"
             android:layout_width="match_parent"
-            tools:listitem="@layout/item_task"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space"
             android:scrollbars="vertical"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_task" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add"

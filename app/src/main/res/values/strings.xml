@@ -29,4 +29,6 @@
     <string name="delete">Delete</string>
     <string name="share">Share</string>
     <string name="continue_signing_in">Continue signing in</string>
+    <string name="no_tasks_added_as_of_now">No tasks added as of now.</string>
+    <string name="reflex">ReflexIon</string>
 </resources>

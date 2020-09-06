@@ -10,6 +10,12 @@ import androidx.fragment.app.viewModels
 import com.example.reflexion.R
 import com.example.reflexion.databinding.AddNoteFragmentBinding
 import com.example.reflexion.viewmodels.AddNoteViewModel
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.firestore.FirebaseFirestore
+import org.jetbrains.anko.longToast
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class AddNoteFragment : Fragment() {
 
@@ -19,6 +25,14 @@ class AddNoteFragment : Fragment() {
 
     private val viewModel: AddNoteViewModel by viewModels()
     private lateinit var binding: AddNoteFragmentBinding
+
+    private val TAG = AddNoteFragment::class.java.simpleName
+    private val database = FirebaseFirestore.getInstance()
+
+    private val KEY_TASK = "tasks"
+    private val KEY_TIME = "date"
+    private val KEY_STARS = "0";
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +68,43 @@ class AddNoteFragment : Fragment() {
 
     private fun saveNote() {
 
+        //We will use keys to pu the data in the form of a map
+        val s = binding.ratingAdd.numStars
+        val str = binding.etDescription.text.toString()
+
+        val c = Calendar.getInstance().time
+
+        val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val formattedDate: String = df.format(c)
+
+        //Create a map
+        val taskMap = HashMap<String, Any>()
+
+        taskMap[KEY_TASK] = str
+        taskMap[KEY_TIME] = df
+        taskMap[KEY_STARS] = c
+
+        //Create a new channel reference
+        //The document takes id
+        //Get id
+        val id = database.collection("myTasksCollection").document().id
+
+        database.collection("myTasksCollection").document(id).set(taskMap)
+            .addOnSuccessListener {
+
+                context?.longToast("Task added")
+
+            }
+            .addOnFailureListener(object : OnFailureListener {
+                override fun onFailure(p0: Exception) {
+                    context?.longToast(p0.toString())
+
+                }
+            })
+
     }
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
