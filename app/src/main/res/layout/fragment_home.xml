@@ -13,6 +13,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notes"
             android:layout_width="match_parent"
+            tools:listitem="@layout/item_task"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space"
             android:scrollbars="vertical"
