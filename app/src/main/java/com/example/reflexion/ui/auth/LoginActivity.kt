@@ -11,7 +11,8 @@ import com.example.reflexion.utils.FirestoreUtil
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
-import org.jetbrains.anko.*
+import org.jetbrains.anko.indeterminateProgressDialog
+import org.jetbrains.anko.longToast
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 .build()
         )
 
+    private val TAG = LoginActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +58,14 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
 
                 val progressDialog = indeterminateProgressDialog("Setting up your account")
+                progressDialog.setCancelable(false)
 
                 FirestoreUtil.initCurrentUserIfFirstTime {
-                    startActivity(intentFor<MainActivity>().newTask().clearTask())
-                    progressDialog.dismiss()
-
                 }
+
+                progressDialog.dismiss()
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (response == null) {

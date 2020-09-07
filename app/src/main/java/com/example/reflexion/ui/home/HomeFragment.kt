@@ -27,7 +27,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
     //Get reference to the document reference
     private val database = FirebaseFirestore.getInstance()
-    private val taskReference = database.document("myTasksCollection")
+//    private val taskReference = database.document("myTasksCollection")
 
     private lateinit var adapter: TasksAdapter
 
@@ -64,21 +64,21 @@ class HomeFragment : Fragment(), OnItemClickListener {
         //Create a list
         val adapterList: MutableList<Task> = mutableListOf()
 
-        taskReference.get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    //This has collections and documents
-
-                } else {
-                    context?.longToast("Unable to get the data")
-                }
-            }
-            .addOnFailureListener(object : OnFailureListener {
-                override fun onFailure(p0: Exception) {
-
-
-                }
-            })
+//        taskReference.get()
+//            .addOnSuccessListener { documentSnapshot ->
+//                if (documentSnapshot.exists()) {
+//                    //This has collections and documents
+//
+//                } else {
+//                    context?.longToast("Unable to get the data")
+//                }
+//            }
+//            .addOnFailureListener(object : OnFailureListener {
+//                override fun onFailure(p0: Exception) {
+//
+//
+//                }
+//            })
 
     }
 
