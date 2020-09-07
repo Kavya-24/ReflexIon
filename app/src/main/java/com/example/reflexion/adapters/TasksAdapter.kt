@@ -19,6 +19,7 @@ class TasksAdapter(val itemClick: OnItemClickListener) :
 
         val DESC = itemView.findViewById<TextView>(R.id.tv_description)
         val STARS = itemView.findViewById<TextView>(R.id.tv_stars)
+        val DATE = itemView.findViewById<TextView>(R.id.tv_date_item)
 
         //Bind a single item
         fun bindPost(_listItem: Task, itemClick: OnItemClickListener) {
@@ -26,6 +27,7 @@ class TasksAdapter(val itemClick: OnItemClickListener) :
 
                 DESC.text = _listItem.description
                 STARS.text = _listItem.numStars.toString()
+                DATE.text = _listItem.date.toString()
 
                 itemView.setOnClickListener {
                     itemClick.clickThisItem(_listItem)

@@ -21,6 +21,7 @@ import com.example.reflexion.viewmodels.HomeViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class HomeFragment : Fragment(), OnItemClickListener {
 
@@ -72,6 +73,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
             database.collection(userId!!)
         val id = database.collection("myTasksCollection").document().id
 
+        //Get them is descending order
+        collectionReference.orderBy("DATE", Query.Direction.DESCENDING)
 
         collectionReference.get()
             .addOnSuccessListener { documentSnapshot ->
@@ -93,7 +96,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
                             val sKey = map?.get("STARS").toString()
                             val tKey = map?.get("TASKS").toString()
                             val __id = i.id
-                            val task = Task(tKey, sKey, __id)
+                            val date = map?.get("DATE").toString()
+                            val task = Task(tKey, sKey, __id, date)
                             adapterList.add(task)
 
                         } else {
@@ -124,7 +128,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
         val bundle = bundleOf(
             "stars" to _listItem.numStars,
             "task" to _listItem.description,
-            "id" to _listItem._id
+            "id" to _listItem._id,
+            "date" to _listItem.date
         )
 
 

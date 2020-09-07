@@ -35,7 +35,7 @@ class AddNoteFragment : Fragment() {
 
     //if these values are changed, make sure
     private val KEY_TASK = "TASKS"
-    private val KEY_TIME = "date"
+    private val KEY_DATE = "DATE"
     private val KEY_STARS = "STARS";
 
 
@@ -81,7 +81,7 @@ class AddNoteFragment : Fragment() {
 
 
         taskMap[KEY_TASK] = str
-        //taskMap[KEY_TIME] = df
+        taskMap[KEY_DATE] = formattedDate
         taskMap[KEY_STARS] = s
 
         //Create a new channel reference

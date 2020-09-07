@@ -46,11 +46,11 @@ class OpenTaskFragment : Fragment() {
         //Extract the arguments
         val stars = arguments?.getString("stars")!!
         val task = arguments?.getString("task")!!
-
+        val date = arguments?.getString("date")!!
 
         binding.rating.rating = stars.toFloat()
         binding.tvDescriptionOpen.text = task
-
+        binding.tv1.text = date
 
         binding.tvShare.setOnClickListener {
             shareNote()
