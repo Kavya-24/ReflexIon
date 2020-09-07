@@ -73,10 +73,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
             database.collection(userId!!)
         val id = database.collection("myTasksCollection").document().id
 
-        //Get them is descending order
-        collectionReference.orderBy("DATE", Query.Direction.DESCENDING)
 
-        collectionReference.get()
+
+        collectionReference.orderBy("DATE", Query.Direction.DESCENDING).get()
             .addOnSuccessListener { documentSnapshot ->
 
 
