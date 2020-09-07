@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reflexion.MainActivity
 import com.example.reflexion.R
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("DEPRECATION")
@@ -18,6 +19,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
 
+        FirebaseApp.initializeApp(this)
 
         handler = Handler()
         handler.postDelayed({

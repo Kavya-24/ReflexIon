@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/no_tasks_added_as_of_now"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space"
             android:scrollbars="vertical"
-            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_task" />
 
