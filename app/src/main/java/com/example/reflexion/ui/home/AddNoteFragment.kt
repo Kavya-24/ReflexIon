@@ -34,9 +34,9 @@ class AddNoteFragment : Fragment() {
     private val database = FirebaseFirestore.getInstance()
 
     //if these values are changed, make sure
-    private val KEY_TASK = "tasks"
+    private val KEY_TASK = "TASKS"
     private val KEY_TIME = "date"
-    private val KEY_STARS = "Stars";
+    private val KEY_STARS = "STARS";
 
 
     override fun onCreateView(
@@ -68,7 +68,7 @@ class AddNoteFragment : Fragment() {
     private fun saveNote() {
 
         //We will use keys to pu the data in the form of a map
-        val s = binding.ratingAdd.numStars
+        val s = binding.ratingAdd.rating.toString()
         val str = binding.etDescription.text.toString()
 
         val c = Calendar.getInstance().time

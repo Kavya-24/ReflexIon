@@ -73,16 +73,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
             database.collection(userId!!)
         val id = database.collection("myTasksCollection").document().id
 
-        //This will have all the ids
-        Log.e(
-            TAG,
-            "User id is " + userId.toString() + " and databse next ref is " + database.collection(
-                userId
-            ).document().id.toString() + " snapsjot ref " + database.collection(userId).document(id)
-                .toString() + " for the did " + id
-        )
-
-
 
         collectionReference.get()
             .addOnSuccessListener { documentSnapshot ->
@@ -101,13 +91,13 @@ class HomeFragment : Fragment(), OnItemClickListener {
                         if (i.exists()) {
                             //Get the data from i
                             val map = i.data
-                            val sKey = map?.get("0").toString()
-                            val tKey = map?.get("tasks").toString()
+                            val sKey = map?.get("STARS").toString()
+                            val tKey = map?.get("TASKS").toString()
                             val task = Task(tKey, sKey)
                             adapterList.add(task)
 
                         } else {
-                                Log.e(TAG, "Unable to load the tasks")
+                            Log.e(TAG, "Unable to load the tasks")
                         }
                     }
 
@@ -130,10 +120,17 @@ class HomeFragment : Fragment(), OnItemClickListener {
     }
 
     override fun clickThisItem(_listItem: Task) {
+
         val bundle = bundleOf(
-            " hdj" to "bhdjk"
+            "stars" to _listItem.numStars  ,
+            "task" to _listItem.description
         )
 
-        findNavController().navigate(R.id.action_nav_home_to_openTaskFragment, bundle)
+
+        findNavController().navigate(
+            R.id.action_nav_home_to_openTaskFragment,bundle)
+
+
+
     }
 }

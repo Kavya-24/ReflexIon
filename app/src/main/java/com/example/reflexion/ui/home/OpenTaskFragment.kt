@@ -1,6 +1,7 @@
 package com.example.reflexion.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,13 @@ class OpenTaskFragment : Fragment() {
         //This will get arguments from the home fragment
         //This will get the rating from argumnets as well
 
+        //Extract the arguments
+        val stars = arguments?.getString("stars")!!
+        val task = arguments?.getString("task")!!
 
+
+        binding.rating.rating = stars.toFloat()
+        binding.tvDescriptionOpen.text = task
 
 
         return binding.root

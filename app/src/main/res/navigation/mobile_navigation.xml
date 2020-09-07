@@ -34,7 +34,7 @@
         android:id="@+id/addNoteFragment"
         android:name="com.example.reflexion.ui.home.AddNoteFragment"
         android:label="Add daily task"
-        tools:layout="@layout/add_note_fragment" >
+        tools:layout="@layout/add_note_fragment">
         <action
             android:id="@+id/action_addNoteFragment_to_nav_home"
             app:destination="@id/nav_home" />
@@ -43,5 +43,7 @@
         android:id="@+id/openTaskFragment"
         android:name="com.example.reflexion.ui.home.OpenTaskFragment"
         android:label="My task"
-        tools:layout="@layout/open_task_fragment" />
+        tools:layout="@layout/open_task_fragment"/>
+
+
 </navigation>
