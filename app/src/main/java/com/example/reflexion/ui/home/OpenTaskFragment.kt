@@ -1,7 +1,7 @@
 package com.example.reflexion.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +40,34 @@ class OpenTaskFragment : Fragment() {
         binding.tvDescriptionOpen.text = task
 
 
+        binding.tvShare.setOnClickListener {
+            shareNote()
+
+        }
+
+        binding.tvDelete.setOnClickListener {
+            deleteThisTask()
+        }
+
+
         return binding.root
+    }
+
+    private fun shareNote() {
+
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        val args = arguments
+
+        val str = args?.getString("task")!!
+        shareIntent.type = "text/plain"
+
+        shareIntent.putExtra(Intent.EXTRA_TEXT, str)
+        startActivity(shareIntent)
+
+    }
+
+    private fun deleteThisTask() {
+        TODO("Not yet implemented")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -30,4 +30,9 @@
     <string name="continue_signing_in">Continue signing in</string>
     <string name="no_tasks_added_as_of_now">No tasks added as of now.</string>
     <string name="reflex">ReflexIon</string>
+
+
+    <!--    Placeholder for task sharing-->
+    <string name="placeholder_share">Here is my task list for the date $s:\n$s\n And I gave myself $s stars</string>
+
 </resources>
