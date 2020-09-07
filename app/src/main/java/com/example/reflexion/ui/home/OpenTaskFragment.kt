@@ -2,15 +2,20 @@ package com.example.reflexion.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.reflexion.R
 import com.example.reflexion.databinding.OpenTaskFragmentBinding
 import com.example.reflexion.viewmodels.OpenTaskViewModel
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class OpenTaskFragment : Fragment() {
 
@@ -18,8 +23,15 @@ class OpenTaskFragment : Fragment() {
         fun newInstance() = OpenTaskFragment()
     }
 
+    private val TAG = OpenTaskFragment::class.java.simpleName
+
     private val viewModel: OpenTaskViewModel by viewModels()
     private lateinit var binding: OpenTaskFragmentBinding
+
+    private val database = FirebaseFirestore.getInstance()
+
+    //Get user id reference
+    private val userId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +79,24 @@ class OpenTaskFragment : Fragment() {
     }
 
     private fun deleteThisTask() {
-        TODO("Not yet implemented")
+        //Get database and user reference
+        val toBeDeleted = arguments?.getString("id")!!
+
+
+        val collectionReference =
+            database.collection(userId!!)
+        collectionReference.document(toBeDeleted).delete()
+            .addOnSuccessListener {
+                findNavController().navigate(R.id.action_openTaskFragment_to_nav_home)
+
+
+            }
+            .addOnFailureListener(object : OnFailureListener {
+                override fun onFailure(p0: Exception) {
+                    Log.e(TAG, p0.message.toString())
+                }
+            })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

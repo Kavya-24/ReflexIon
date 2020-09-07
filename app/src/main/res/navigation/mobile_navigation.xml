@@ -43,7 +43,11 @@
         android:id="@+id/openTaskFragment"
         android:name="com.example.reflexion.ui.home.OpenTaskFragment"
         android:label="My task"
-        tools:layout="@layout/open_task_fragment"/>
+        tools:layout="@layout/open_task_fragment">
+        <action
+            android:id="@+id/action_openTaskFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 
 </navigation>

@@ -68,7 +68,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
         //Create a list
         val adapterList: MutableList<Task> = mutableListOf()
-
         val collectionReference =
             database.collection(userId!!)
         val id = database.collection("myTasksCollection").document().id
@@ -93,7 +92,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
                             val map = i.data
                             val sKey = map?.get("STARS").toString()
                             val tKey = map?.get("TASKS").toString()
-                            val task = Task(tKey, sKey)
+                            val __id = i.id
+                            val task = Task(tKey, sKey, __id)
                             adapterList.add(task)
 
                         } else {
@@ -122,14 +122,15 @@ class HomeFragment : Fragment(), OnItemClickListener {
     override fun clickThisItem(_listItem: Task) {
 
         val bundle = bundleOf(
-            "stars" to _listItem.numStars  ,
-            "task" to _listItem.description
+            "stars" to _listItem.numStars,
+            "task" to _listItem.description,
+            "id" to _listItem._id
         )
 
 
         findNavController().navigate(
-            R.id.action_nav_home_to_openTaskFragment,bundle)
-
+            R.id.action_nav_home_to_openTaskFragment, bundle
+        )
 
 
     }
