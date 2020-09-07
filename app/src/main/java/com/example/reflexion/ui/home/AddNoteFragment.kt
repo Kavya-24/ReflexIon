@@ -1,18 +1,22 @@
 package com.example.reflexion.ui.home
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.reflexion.R
 import com.example.reflexion.databinding.AddNoteFragmentBinding
 import com.example.reflexion.viewmodels.AddNoteViewModel
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.jetbrains.anko.longToast
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -29,9 +33,10 @@ class AddNoteFragment : Fragment() {
     private val TAG = AddNoteFragment::class.java.simpleName
     private val database = FirebaseFirestore.getInstance()
 
+    //if these values are changed, make sure
     private val KEY_TASK = "tasks"
     private val KEY_TIME = "date"
-    private val KEY_STARS = "0";
+    private val KEY_STARS = "Stars";
 
 
     override fun onCreateView(
@@ -42,21 +47,15 @@ class AddNoteFragment : Fragment() {
             DataBindingUtil.inflate(layoutInflater, R.layout.add_note_fragment, container, false)
 
 
-        binding.apply {
-            if (etDescription.length() > 0) {
-                mbtnReset.isEnabled = true
-                mbtnSave.isEnabled = true
-            }
 
-            mbtnReset.setOnClickListener {
-                etDescription.text = null
-            }
-
-            mbtnSave.setOnClickListener {
-                saveNote()
-            }
-
+        binding.mbtnReset.setOnClickListener {
+            binding.etDescription.text = null
         }
+
+        binding.mbtnSave.setOnClickListener {
+            saveNote()
+        }
+
 
 
 
@@ -80,30 +79,41 @@ class AddNoteFragment : Fragment() {
         //Create a map
         val taskMap = HashMap<String, Any>()
 
+
         taskMap[KEY_TASK] = str
-        taskMap[KEY_TIME] = df
-        taskMap[KEY_STARS] = c
+        //taskMap[KEY_TIME] = df
+        taskMap[KEY_STARS] = s
 
         //Create a new channel reference
         //The document takes id
         //Get id
+
+
+        //Get the user id
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
         val id = database.collection("myTasksCollection").document().id
 
-        database.collection("myTasksCollection").document(id).set(taskMap)
+
+        database.collection(userId!!).document(id).set(taskMap)
             .addOnSuccessListener {
 
-                context?.longToast("Task added")
+
+                val imm: InputMethodManager =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+                findNavController().navigate(R.id.action_addNoteFragment_to_nav_home)
 
             }
             .addOnFailureListener(object : OnFailureListener {
                 override fun onFailure(p0: Exception) {
-                    context?.longToast(p0.toString())
+                    Log.e(TAG, p0.toString() + " " + p0.message.toString())
 
                 }
             })
 
-    }
 
+
+    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -111,5 +121,7 @@ class AddNoteFragment : Fragment() {
 
 
     }
+
+
 
 }

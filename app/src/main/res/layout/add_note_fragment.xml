@@ -21,8 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space_2x"
             android:hint="@string/add_work_here"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:maxLines="10"
+            android:scrollbars="vertical"
             app:layout_constraintTop_toBottomOf="@id/tv1"
             tools:text="@tools:sample/lorem/random" />
 
@@ -31,10 +32,10 @@
             style="?android:attr/ratingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:isIndicator="true"
+            android:layout_marginTop="@dimen/space"
+            android:isIndicator="false"
             android:numStars="5"
             android:stepSize="0.1"
-            android:layout_marginTop="@dimen/space"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_description" />

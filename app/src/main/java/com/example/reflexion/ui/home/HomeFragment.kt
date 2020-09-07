@@ -1,9 +1,11 @@
 package com.example.reflexion.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,8 +19,8 @@ import com.example.reflexion.databinding.FragmentHomeBinding
 import com.example.reflexion.models.Task
 import com.example.reflexion.viewmodels.HomeViewModel
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.jetbrains.anko.longToast
 
 class HomeFragment : Fragment(), OnItemClickListener {
 
@@ -27,7 +29,10 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
     //Get reference to the document reference
     private val database = FirebaseFirestore.getInstance()
-//    private val taskReference = database.document("myTasksCollection")
+
+    //Get user id reference
+    private val userId = FirebaseAuth.getInstance().currentUser?.uid
+    private val TAG = HomeFragment::class.java.simpleName
 
     private lateinit var adapter: TasksAdapter
 
@@ -64,21 +69,63 @@ class HomeFragment : Fragment(), OnItemClickListener {
         //Create a list
         val adapterList: MutableList<Task> = mutableListOf()
 
-//        taskReference.get()
-//            .addOnSuccessListener { documentSnapshot ->
-//                if (documentSnapshot.exists()) {
-//                    //This has collections and documents
-//
-//                } else {
-//                    context?.longToast("Unable to get the data")
-//                }
-//            }
-//            .addOnFailureListener(object : OnFailureListener {
-//                override fun onFailure(p0: Exception) {
-//
-//
-//                }
-//            })
+        val collectionReference =
+            database.collection(userId!!)
+        val id = database.collection("myTasksCollection").document().id
+
+        //This will have all the ids
+        Log.e(
+            TAG,
+            "User id is " + userId.toString() + " and databse next ref is " + database.collection(
+                userId
+            ).document().id.toString() + " snapsjot ref " + database.collection(userId).document(id)
+                .toString() + " for the did " + id
+        )
+
+
+
+        collectionReference.get()
+            .addOnSuccessListener { documentSnapshot ->
+
+
+                if (documentSnapshot.documents.isEmpty()) {
+                    binding.tvNoTask.visibility = View.VISIBLE
+                    binding.rvNotes.visibility = View.GONE
+                } else {
+
+                    binding.tvNoTask.visibility = View.GONE
+                    binding.rvNotes.visibility = View.VISIBLE
+
+
+                    for (i in documentSnapshot.documents) {
+                        if (i.exists()) {
+                            //Get the data from i
+                            val map = i.data
+                            val sKey = map?.get("0").toString()
+                            val tKey = map?.get("tasks").toString()
+                            val task = Task(tKey, sKey)
+                            adapterList.add(task)
+
+                        } else {
+                                Log.e(TAG, "Unable to load the tasks")
+                        }
+                    }
+
+
+                    adapter.lst = adapterList
+                    binding.rvNotes.adapter = adapter
+                    adapter.notifyDataSetChanged()
+
+                }
+
+
+            }
+            .addOnFailureListener(object : OnFailureListener {
+                override fun onFailure(p0: java.lang.Exception) {
+                    Toast.makeText(context, p0.message, Toast.LENGTH_SHORT).show()
+                }
+            })
+
 
     }
 

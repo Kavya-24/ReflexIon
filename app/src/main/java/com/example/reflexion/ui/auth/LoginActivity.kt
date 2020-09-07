@@ -64,8 +64,12 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 progressDialog.dismiss()
+
                 val i = Intent(this, MainActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(i)
+                finish()
+
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 if (response == null) {

@@ -8,10 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -28,7 +28,6 @@
     <style name="buttonAttributesStyle">
         <item name="android:layout_width">@dimen/btn_width</item>
         <item name="android:layout_height">@dimen/btn_height</item>
-        <item name="android:enabled">false</item>
         <item name="android:layout_margin">@dimen/space_2x</item>
     </style>
 
